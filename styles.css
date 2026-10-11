@@ -30,10 +30,6 @@ body {
   overflow-x: hidden;
 }
 
-body.modal-open {
-  overflow: hidden;
-}
-
 img {
   display: block;
   max-width: 100%;
@@ -432,52 +428,26 @@ h3 {
   font-size: clamp(1.08rem, 1.8vw, 1.35rem);
 }
 
-.letter-gallery {
+.recommendation-list {
   display: grid;
-  grid-template-columns: 1.06fr 0.82fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  align-items: start;
+  align-items: stretch;
 }
 
-.letter-scan {
-  display: grid;
-  gap: 12px;
-}
-
-.letter-button {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
+.recommendation-card {
+  display: flex;
+  min-height: 180px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 3vw, 34px);
+  background: rgba(255, 253, 248, 0.06);
+  border: 1px solid rgba(255, 253, 248, 0.28);
+  box-shadow: 14px 14px 0 rgba(0, 0, 0, 0.16);
   color: inherit;
-  cursor: zoom-in;
-  text-align: left;
 }
 
-.letter-button:hover img,
-.letter-button:focus-visible img {
-  border-color: var(--brass);
-  transform: translateY(-3px);
-}
-
-.letter-button:focus-visible {
-  outline: 2px solid var(--brass);
-  outline-offset: 8px;
-}
-
-.letter-scan img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: contain;
-  object-position: top center;
-  background: #fff;
-  border: 1px solid rgba(255, 253, 248, 0.42);
-  box-shadow: 16px 16px 0 rgba(0, 0, 0, 0.18);
-  transition: border-color 180ms ease, transform 180ms ease;
-}
-
-.letter-scan span {
+.recommendation-card span {
   color: rgba(255, 253, 248, 0.84);
   font-size: 0.76rem;
   font-weight: 800;
@@ -485,12 +455,11 @@ h3 {
   text-transform: uppercase;
 }
 
-.featured-letter {
-  grid-row: span 2;
-}
-
-.featured-letter img {
-  box-shadow: 20px 20px 0 rgba(0, 0, 0, 0.2);
+.recommendation-card p {
+  margin: 28px 0 0;
+  color: rgba(255, 253, 248, 0.74);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.55;
 }
 
 .contact-section {
@@ -581,80 +550,6 @@ h3 {
   font-size: 0.9rem;
 }
 
-.letter-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  display: none;
-  place-items: center;
-  padding: 18px;
-  background: rgba(16, 23, 21, 0.72);
-  backdrop-filter: blur(8px);
-}
-
-.letter-modal.is-open {
-  display: grid;
-}
-
-.letter-modal-shell {
-  display: grid;
-  width: min(94vw, 960px);
-  max-height: 94vh;
-  grid-template-rows: auto minmax(0, 1fr);
-  overflow: hidden;
-  background: var(--paper);
-  border: 1px solid var(--brass);
-  box-shadow: var(--shadow);
-}
-
-.letter-modal-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 16px 18px;
-  border-bottom: 1px solid var(--line);
-  background: var(--paper);
-}
-
-.letter-modal-bar h2 {
-  margin: 0;
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.letter-close {
-  min-height: 38px;
-  padding: 0 14px;
-  border: 1px solid var(--deep);
-  background: var(--deep);
-  color: var(--paper);
-  cursor: pointer;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.letter-modal-frame {
-  max-height: calc(94vh - 71px);
-  overflow: auto;
-  padding: clamp(18px, 3vw, 34px);
-  background: #ede7dc;
-}
-
-.letter-modal-frame img {
-  width: min(860px, 100%);
-  max-width: none;
-  margin: 0 auto;
-  background: #fff;
-  box-shadow: 0 18px 60px rgba(16, 23, 21, 0.22);
-}
-
 @media (max-width: 1320px) {
   .trust {
     grid-template-columns: 1fr;
@@ -664,13 +559,6 @@ h3 {
     max-width: 100%;
   }
 
-  .letter-gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .featured-letter {
-    grid-row: auto;
-  }
 }
 
 @media (max-width: 940px) {
@@ -737,12 +625,8 @@ h3 {
     max-width: 430px;
   }
 
-  .letter-gallery {
+  .recommendation-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .featured-letter {
-    grid-row: auto;
   }
 
   .project.featured img,
@@ -798,17 +682,9 @@ h3 {
     line-height: 1.16;
   }
 
-  .letter-gallery {
+  .recommendation-list {
     grid-template-columns: 1fr;
     gap: 24px;
-  }
-
-  .letter-modal {
-    padding: 12px;
-  }
-
-  .letter-modal-frame {
-    padding: 14px;
   }
 
   .site-footer {
